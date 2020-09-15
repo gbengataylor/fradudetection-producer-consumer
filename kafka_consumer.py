@@ -26,7 +26,7 @@ def invokeModel(msg, access_token, seldon):
     headers = {'Content-type': 'application/json', 'Authorization': 'Bearer {}'.format(access_token)}
     #Read the test dataframe and stream each row
 
-    print("calling seldon)
+    print("calling seldon")
     # Send the post request for the prediction
     requestPrediction = requests.post(seldon+'/api/v0.1/predictions', headers=headers, json={"strData": payload })
     predictionData = requestPrediction.json();
