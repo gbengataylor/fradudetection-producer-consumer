@@ -8,7 +8,7 @@ import csv
 import os
 
 def getToken(seldon):
-    print("getToken - ")
+    #print("getToken - ")
     post_data = {"grant_type": "client_credentials"}
     requestOauth = requests.post(seldon+'/oauth/token', auth=('oauth-key', 'oauth-secret'), data=post_data, json={'grant_type=client_credentials'})
     # print(requestOauth.content)
@@ -21,12 +21,12 @@ def invokeModel(msg, access_token, seldon):
 # "Time","V1","V2","V3","V4","V5","V6","V7","V8","V9","V10","V11","V12","V13","V14","V15","V16","V17","V18","V19","V20","V21","V22","V23","V24","V25","V26","V27","V28","Amount","Class" - Fields we get on the consumer
 # ['V3','V4','V10','V11','V12','V14','V17','Amount'] - Fields to be sent to the model
 
-    print("invokeModel")
+    #print("invokeModel")
     payload = ""+msg[3]+","+msg[4]+","+msg[10]+","+msg[11]+","+msg[12]+","+msg[14]+","+msg[17]+","+msg[29]
     headers = {'Content-type': 'application/json', 'Authorization': 'Bearer {}'.format(access_token)}
     #Read the test dataframe and stream each row
 
-    print("calling seldon")
+    #print("calling seldon")
     # Send the post request for the prediction
     requestPrediction = requests.post(seldon+'/api/v0.1/predictions', headers=headers, json={"strData": payload })
     predictionData = requestPrediction.json();
@@ -36,7 +36,7 @@ def invokeModel(msg, access_token, seldon):
    # print(tensorField)
    # predictionArray = datafield['ndarray']
     predictionArray=tensorField['values']
-    print(predictionArray[0])
+    printf("prediction for transaction %s: %s:", payload, predictionArray[0])
 
 def main():
 
