@@ -36,7 +36,10 @@ def invokeModel(msg, access_token, seldon):
    # print(tensorField)
    # predictionArray = datafield['ndarray']
     predictionArray=tensorField['values']
-    printf("prediction for transaction %s: %s:", payload, predictionArray[0])
+    print("Transaction:")
+    print(payload)
+    print("prediction:")
+    print(predictionArray[0])
 
 def main():
 
